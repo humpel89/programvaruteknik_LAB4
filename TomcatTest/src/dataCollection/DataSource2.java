@@ -3,7 +3,7 @@ package dataCollection;
 import java.time.LocalDate;
 import java.util.Map;
 
-public interface DataSource {
+public interface DataSource2 {
 	
 	public String getName();
 	

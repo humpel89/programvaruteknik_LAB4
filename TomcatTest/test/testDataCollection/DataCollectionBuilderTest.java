@@ -12,10 +12,10 @@ import org.junit.Test;
 
 import dataCollection.DataCollection;
 import dataCollection.DataCollectionBuilder;
-import dataCollection.DataSource;
 import dataCollection.MatchedDataPair;
 import dataCollection.Resolution;
 
+import dataSources.DataSource;
 
 public class DataCollectionBuilderTest {
 	DataCollectionBuilder dcBuilder;

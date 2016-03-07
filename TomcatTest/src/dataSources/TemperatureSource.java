@@ -6,12 +6,16 @@ import java.util.TreeMap;
 
 
 public class TemperatureSource implements DataSource{
-	private String csvFileToRead = FootballArena.STROMVALLEN.getCityTemperatureLocalPath();
-			//"SMHI_Data/smhi-opendata_2_107420_corrected-archive_2016-02-01_23-00-00.csv";
+	private String csvFileToRead;
+			
 	
+	public TemperatureSource(String sourceUrl){
+		this.csvFileToRead = sourceUrl;
+	}
+	public void setDataSource(String sourceUrl){
+		this.csvFileToRead = sourceUrl;
+	}
 	
-
-
 	@Override
 	public String getName(){
 
@@ -42,4 +46,5 @@ public class TemperatureSource implements DataSource{
 		}
 		return result;
 	}
+	
 }

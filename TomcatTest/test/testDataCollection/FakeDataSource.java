@@ -3,7 +3,7 @@ package testDataCollection;
 import java.time.LocalDate;
 import java.util.Map;
 
-import dataCollection.DataSource;
+import dataSources.DataSource;
 
 public class FakeDataSource implements DataSource {
 	

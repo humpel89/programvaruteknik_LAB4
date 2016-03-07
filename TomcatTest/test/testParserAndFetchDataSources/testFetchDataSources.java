@@ -20,7 +20,7 @@ public class testFetchDataSources {
 	@Before
 	public void setUp() throws Exception {
 		goalSource = new FootballGoalsSource();
-		temperatureSource = new TemperatureSource();
+		temperatureSource = new TemperatureSource(FootballArena.STROMVALLEN.getCityTemperatureURL());
 		gamesAtStromvallen = goalSource.getData();
 	}
 
