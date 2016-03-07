@@ -7,15 +7,26 @@ import java.util.TreeMap;
 
 public class TemperatureSource implements DataSource{
 	private String csvFileToRead;
-			
-	
-	public TemperatureSource(String sourceUrl){
-		this.csvFileToRead = sourceUrl;
+
+	public TemperatureSource(String source){
+		setDataSource(source);
 	}
-	public void setDataSource(String sourceUrl){
-		this.csvFileToRead = sourceUrl;
+
+	public void setDataSource(String source){
+		if(isOnlineUrl(source)){
+			source = convertToCsv(source);
+		}
+		this.csvFileToRead = source;
 	}
-	
+	private String convertToCsv(String source) {
+
+		//TODO konvertera
+		UrlFetcher fetcher = new UrlFetcher(source);
+		return fetcher.getContent();
+	}
+	private boolean isOnlineUrl(String sourceUrl) {
+		return sourceUrl.substring(0, 3).matches("http");
+	}
 	@Override
 	public String getName(){
 
@@ -31,14 +42,11 @@ public class TemperatureSource implements DataSource{
 	@Override
 	public Map<LocalDate, Double> getData(){
 		CsvToMapParser parser = new CsvToMapParser(csvFileToRead);
-		
-		//UrlFetcher fetcher = new UrlFetcher(FootballArena.STROMVALLEN.getCityTemperatureURL());
-		//CsvToMapParser parser = new CsvToMapParser(fetcher.getContent());
-		
+
 		Map<String, Object> data = parser.getResult();
 		Map<LocalDate, Double> result = new TreeMap<>();
 		LocalDate date = LocalDate.of(2014, 1, 1);
-		
+
 		while(date.getYear() == 2014){
 			String dateKey = date.toString();
 			result.put(date, Double.valueOf(data.get(dateKey).toString()));
@@ -46,5 +54,5 @@ public class TemperatureSource implements DataSource{
 		}
 		return result;
 	}
-	
+
 }

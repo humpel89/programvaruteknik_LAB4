@@ -22,7 +22,6 @@ public class DataCollectionBuilderTestWithRealDataSources {
 	public void setUp() throws Exception {
 		
 		goalSource = new FootballGoalsSource();
-		//tempSource = new TemperatureSource(FootballArena.STROMVALLEN.getCityTemperatureLocalPath());
 	}
 
 	@After
@@ -40,7 +39,7 @@ public class DataCollectionBuilderTestWithRealDataSources {
 		tempSource = new TemperatureSource(FootballArena.STROMVALLEN.getCityTemperatureLocalPath());
 		buildDataCollectionAndPrintResult();
 	}
-	
+	@Test
 	public void testGetResultURL() {
 		tempSource = new TemperatureSource(FootballArena.STROMVALLEN.getCityTemperatureURL());
 		buildDataCollectionAndPrintResult();
