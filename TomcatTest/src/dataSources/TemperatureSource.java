@@ -9,50 +9,50 @@ public class TemperatureSource implements DataSource{
 	private String csvFileToRead;
 
 	public TemperatureSource(String source){
-		setDataSource(source);
+		this.csvFileToRead = source;
 	}
 
 	public void setDataSource(String source){
-		if(isOnlineUrl(source)){
-			source = convertToCsv(source);
-		}
 		this.csvFileToRead = source;
 	}
-	private String convertToCsv(String source) {
 
-		//TODO konvertera
-		UrlFetcher fetcher = new UrlFetcher(source);
-		return fetcher.getContent();
-	}
-	private boolean isOnlineUrl(String sourceUrl) {
-		return sourceUrl.substring(0, 3).matches("http");
-	}
 	@Override
 	public String getName(){
-
 		return "SMHI Temperature from Gävle";
 	}
 
 	@Override
 	public String getUnit() {
-
 		return "Celsius";
 	}
 
 	@Override
 	public Map<LocalDate, Double> getData(){
-		CsvToMapParser parser = new CsvToMapParser(csvFileToRead);
+		CsvToMapParser parser;
+		Map<String, Object> data;
+		if(isOnlineUrl(csvFileToRead)){
+			UrlFetcher fetcher = new UrlFetcher(csvFileToRead);
+			parser = new CsvToMapParser(fetcher.getContent());
+			data = parser.getResultFromString();
+		}
+		else{
+			parser = new CsvToMapParser(csvFileToRead);
+			data = parser.getResultFromFile();
+		}
+		return finalResultsFrom(data);
+	}
 
-		Map<String, Object> data = parser.getResult();
+	private Map<LocalDate, Double> finalResultsFrom(Map<String, Object> data) {
 		Map<LocalDate, Double> result = new TreeMap<>();
 		LocalDate date = LocalDate.of(2014, 1, 1);
-
 		while(date.getYear() == 2014){
 			String dateKey = date.toString();
 			result.put(date, Double.valueOf(data.get(dateKey).toString()));
 			date = date.plusDays(1);
 		}
 		return result;
+	}	
+	private boolean isOnlineUrl(String sourceUrl) {
+		return sourceUrl.substring(0, 4).matches("http");
 	}
-
 }

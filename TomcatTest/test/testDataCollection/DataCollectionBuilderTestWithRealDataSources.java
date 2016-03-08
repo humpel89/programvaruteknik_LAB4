@@ -28,26 +28,20 @@ public class DataCollectionBuilderTestWithRealDataSources {
 	public void tearDown() throws Exception {
 	}
 
-
-	@Test
-	public void testGetTitle() {
-		fail("Not yet implemented");
-	}
-
 	@Test
 	public void testGetResultLocalPath() {
 		tempSource = new TemperatureSource(FootballArena.STROMVALLEN.getCityTemperatureLocalPath());
-		buildDataCollectionAndPrintResult();
+		buildDataCollectionAndPrintResult("TestViaLocalPath");
 	}
 	@Test
 	public void testGetResultURL() {
 		tempSource = new TemperatureSource(FootballArena.STROMVALLEN.getCityTemperatureURL());
-		buildDataCollectionAndPrintResult();
+		buildDataCollectionAndPrintResult("TestViaURL");
 	}
 	
-	private void buildDataCollectionAndPrintResult() {
+	private void buildDataCollectionAndPrintResult(String testType) {
 		dcBuilder = new DataCollectionBuilder(goalSource, tempSource, Resolution.DAY);
-		System.out.println(dcBuilder.getResult().getData());
+		System.out.println(testType + ": " + dcBuilder.getResult().getData());
 	}
 
 

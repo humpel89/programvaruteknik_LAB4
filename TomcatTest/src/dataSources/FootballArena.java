@@ -3,7 +3,7 @@ package dataSources;
 public enum FootballArena {
 	OLYMPIA("Olympia, Helsingborg", "60662", "Helsingborg", null, null), 
 	STROMVALLEN("Strömvallen", "60610", "Gävle",
-			"http://opendata-download-metobs.smhi.se/api/version/latest/parameter/2/station/107420/period/corrected-archive/data.csv", 
+			"http://opendata-download-metobs.smhi.se/explore/zip?parameterIds=2&stationId=107420&period=corrected-archive&includeMetadata=false",
 			"SMHI_Data/smhi-opendata_2_107420_corrected-archive_2016-02-01_23-00-00.csv"),
 	NYAPARKEN("Nya Parken", "60029", "Norrköping", null, null);
 

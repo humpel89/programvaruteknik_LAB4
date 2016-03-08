@@ -29,7 +29,7 @@ public class TestCsvParser {
 
 	@Test
 	public void testGetResultForStromvallen2014() {
-		Map<String, Object> data = csvParser.getResult();
+		Map<String, Object> data = csvParser.getResultFromFile();
 		assertEquals(null, data.get("1997-01-01"));
 		assertEquals(null, data.get("2004-01-01"));
 		assertEquals(null, data.get("2013-12-31"));
