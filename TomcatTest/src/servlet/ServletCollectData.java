@@ -14,13 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 //Är bara en test servlet som kanske kan användas
 
 @WebServlet("/ServletColectData")
-public class ServletColectData extends HttpServlet {
+public class ServletCollectData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletColectData() {
+    public ServletCollectData() {
         super();
         // TODO Auto-generated constructor stub
     }

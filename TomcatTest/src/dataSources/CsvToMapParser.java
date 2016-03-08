@@ -23,10 +23,6 @@ public class CsvToMapParser {
 		this.csvFileToRead = csvFileToRead;
 	}
 
-//	public Map<String, Object> getResult() {
-//		//return translateCsvFromString();
-//		return getResultFromFile();
-//	}
 	public Map<String, Object> getResultFromString() {
 		String[] separated;
 		Map<String, Object> value = new HashMap<String, Object>();

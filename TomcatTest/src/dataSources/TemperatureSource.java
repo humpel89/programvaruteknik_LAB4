@@ -7,7 +7,8 @@ import java.util.TreeMap;
 
 public class TemperatureSource implements DataSource{
 	private String csvFileToRead;
-
+	private CsvToMapParser parser;
+	private	Map<String, Object> data;
 	public TemperatureSource(String source){
 		this.csvFileToRead = source;
 	}
@@ -28,18 +29,24 @@ public class TemperatureSource implements DataSource{
 
 	@Override
 	public Map<LocalDate, Double> getData(){
-		CsvToMapParser parser;
-		Map<String, Object> data;
 		if(isOnlineUrl(csvFileToRead)){
-			UrlFetcher fetcher = new UrlFetcher(csvFileToRead);
-			parser = new CsvToMapParser(fetcher.getContent());
-			data = parser.getResultFromString();
+			data = prepareDataFromURL();
 		}
 		else{
-			parser = new CsvToMapParser(csvFileToRead);
-			data = parser.getResultFromFile();
+			data = prepareDataFromFile();
 		}
 		return finalResultsFrom(data);
+	}
+
+	private Map<String, Object> prepareDataFromFile() {
+		parser = new CsvToMapParser(csvFileToRead);
+		return parser.getResultFromFile();
+	}
+
+	private Map<String, Object> prepareDataFromURL() {
+		UrlFetcher fetcher = new UrlFetcher(csvFileToRead);
+		parser = new CsvToMapParser(fetcher.getContent());
+		return parser.getResultFromString();
 	}
 
 	private Map<LocalDate, Double> finalResultsFrom(Map<String, Object> data) {
