@@ -32,6 +32,7 @@ public class DataCollectionBuilderTestWithRealDataSources {
 	public void testGetResultLocalPath() {
 		tempSource = new TemperatureSource(FootballArena.STROMVALLEN.getCityTemperatureLocalPath());
 		buildDataCollectionAndPrintResult("TestViaLocalPath");
+		
 	}
 	@Test
 	public void testGetResultURL() {
