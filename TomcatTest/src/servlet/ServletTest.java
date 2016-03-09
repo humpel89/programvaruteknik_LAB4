@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ServletTest extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("application/json;charset=UTF-8");
+        //response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             int a = Integer.parseInt(request.getParameter("a"));
             int b = Integer.parseInt(request.getParameter("b"));

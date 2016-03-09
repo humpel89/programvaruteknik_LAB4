@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dataSources.GetDataCollection;
+
 /**
  * Servlet implementation class ServletColectData
  */
@@ -15,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/ServletColectData")
 public class ServletCollectData extends HttpServlet {
+	
+	GetDataCollection test = new GetDataCollection();
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -26,11 +30,12 @@ public class ServletCollectData extends HttpServlet {
     }
     
     protected void prettyProcess( HttpServletRequest request){
-    
+    System.out.println("pretty");
     }
     protected void process() {
-		
     	
+    	System.out.println("ugly");
+    	test.getData();
 	}
     
     
@@ -39,8 +44,8 @@ public class ServletCollectData extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		boolean prettyRequest = Boolean.parseBoolean(request.getParameter("pretty"));
-		if(prettyRequest){
+		String pretty = "true";
+		if(pretty.equals(request.getParameter("pretty"))){
 			prettyProcess(request);
 		}
 		else{
