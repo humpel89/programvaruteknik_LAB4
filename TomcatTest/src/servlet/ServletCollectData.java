@@ -40,7 +40,8 @@ public class ServletCollectData extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String result = jsonGetter.getString();
-		if ("true".equals(request.getParameter("pretty"))) {
+		
+		if ("true".equalsIgnoreCase(request.getParameter("pretty"))) {
 			
 			 result = formatter.format(result);
 			
