@@ -46,15 +46,18 @@ public class DataCollectionBuilder {
 		List<LocalDate> xKeys = new ArrayList<>();
 		List<LocalDate> yKeys = new ArrayList<>();
 
-		xKeys.addAll(xData.getData().keySet());
-		yKeys.addAll(yData.getData().keySet());
+		Map<LocalDate,Double> sourceX = xData.getData();
+		Map<LocalDate,Double> sourceY = yData.getData();
+		
+		xKeys.addAll(sourceX.keySet());
+		yKeys.addAll(sourceY.keySet());
 
 		for (int i = 0; i < xKeys.size(); i++) 
 			for (int u = 0; u < yKeys.size(); u++) {
 				if(xKeys.get(i).equals(yKeys.get(u))){
 					String key = xKeys.get(i).toString();
-					Double xKeyData = xData.getData().get(xKeys.get(i));
-					Double yKeyData = yData.getData().get(yKeys.get(u));
+					Double xKeyData =sourceX.get(xKeys.get(i));
+					Double yKeyData = sourceY.get(yKeys.get(u));
 					MatchedDataPair match = new MatchedDataPair(xKeyData, yKeyData);
 					finalResult.put(key, match);
 				}
