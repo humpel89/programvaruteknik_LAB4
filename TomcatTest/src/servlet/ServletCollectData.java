@@ -7,58 +7,56 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dataSources.GetDataCollection;
+import dataHandler.GetDataCollection;
 
 /**
  * Servlet implementation class ServletColectData
  */
 
-//Är bara en test servlet som kanske kan användas
+// Är bara en test servlet som kanske kan användas
 
 @WebServlet("/ServletColectData")
 public class ServletCollectData extends HttpServlet {
-	
+
 	GetDataCollection test = new GetDataCollection();
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletCollectData() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    
-    protected void prettyProcess( HttpServletRequest request){
-    System.out.println("pretty");
-    }
-    protected void process() {
-    	
-    	System.out.println("ugly");
-    	test.getData();
-	}
-    
-    
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ServletCollectData() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String pretty = "true";
-		if(pretty.equals(request.getParameter("pretty"))){
-			prettyProcess(request);
+		String result = test.getData();
+		if ("true".equals(request.getParameter("pretty"))) {
+			
+	
+			
 		}
-		else{
-			process();
-		}
+			
+		
+		System.out.println(result);
 		
 
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
