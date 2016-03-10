@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dataHandler.GetDataCollection;
+import dataHandler.DataSourcesToJsonConverter;
+import dataHandler.JsonFormatter;
 
 /**
  * Servlet implementation class ServletColectData
@@ -17,8 +18,8 @@ import dataHandler.GetDataCollection;
 
 @WebServlet("/ServletColectData")
 public class ServletCollectData extends HttpServlet {
-
-	GetDataCollection test = new GetDataCollection();
+	JsonFormatter formatter = new JsonFormatter();
+	DataSourcesToJsonConverter jsonGetter = new DataSourcesToJsonConverter();
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -38,14 +39,15 @@ public class ServletCollectData extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String result = test.getData();
+		String result = jsonGetter.getString();
 		if ("true".equals(request.getParameter("pretty"))) {
 			
-	
+			 result = formatter.format(result);
 			
 		}
 			
 		
+		response.getWriter().append(result);
 		System.out.println(result);
 		
 
