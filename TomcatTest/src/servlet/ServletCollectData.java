@@ -8,17 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dataHandler.DataSourcesToJsonConverter;
-import dataHandler.JsonFormatter;
+import dataHandler.PrettyJsonFormatter;
 
 /**
  * Servlet implementation class ServletColectData
  */
 
-// Är bara en test servlet som kanske kan användas
-
-@WebServlet("/ServletColectData")
+@WebServlet("/ServletCollectData")
 public class ServletCollectData extends HttpServlet {
-	JsonFormatter formatter = new JsonFormatter();
+	PrettyJsonFormatter formatter = new PrettyJsonFormatter();
 	DataSourcesToJsonConverter jsonGetter = new DataSourcesToJsonConverter();
 	private static final long serialVersionUID = 1L;
 
@@ -27,10 +25,8 @@ public class ServletCollectData extends HttpServlet {
 	 */
 	public ServletCollectData() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
-
-
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -38,19 +34,15 @@ public class ServletCollectData extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		String result = jsonGetter.getString();
-		
+
 		if ("true".equalsIgnoreCase(request.getParameter("pretty"))) {
-			
-			 result = formatter.format(result);
-			
+
+			result = formatter.format(result);
 		}
-			
-		
+
 		response.getWriter().append(result);
-		System.out.println(result);
-		
 
 	}
 
@@ -60,7 +52,7 @@ public class ServletCollectData extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		doGet(request, response);
 	}
 

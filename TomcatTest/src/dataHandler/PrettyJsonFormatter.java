@@ -6,7 +6,7 @@ package dataHandler;
  * @author Rasmus Östberg
  *
  */
-public class JsonFormatter {
+public class PrettyJsonFormatter {
 	/**
 	 * Formats the given string to a readable JSON format
 	 *
